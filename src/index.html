@@ -10,7 +10,7 @@
     <p id="demo"></p>
     <script>
         async function getApi(){
-            const response = await fetch("http://localhost:8080/test");
+            const response = await fetch("https://vpn.testing-labs.net/https/random-number-server.azurewebsites.net/random-number");
 
             var data = await response.json();
             document.getElementById("demo").innerHTML =+data;
