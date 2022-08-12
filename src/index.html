@@ -1,24 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 <body>
+    <p id="demo"></p>
+    <script>
+        async function getApi(){
+            const response = await fetch("http://localhost:8080/test");
 
-<p id="demo"></p>
+            var data = await response.json();
+            document.getElementById("demo").innerHTML =+data;
+            console.log(data)
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            await getApi();
+            
+        }
 
-<script>
- var min = 0,max = 1000;
- var rand = Math.floor(Math.random() * (max - min + 1) + min);
- document.getElementById("demo").innerHTML +=rand
- setInterval(displayRandomNumber, 60000);
-
-  function displayRandomNumber() {
-      var list  = document.getElementById("demo")
-      while (list.hasChildNodes()) {
-          list.removeChild(list.firstChild);
-      } 
-      rand = Math.floor(Math.random() * (max - min + 1) + min);
-      document.getElementById("demo").innerHTML +=rand
-  }
-</script>
-
+        getApi();
+    </script>
 </body>
 </html>
